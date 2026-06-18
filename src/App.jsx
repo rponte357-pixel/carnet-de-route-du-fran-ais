@@ -3,6 +3,7 @@ import Navigation from './components/Navigation.jsx'
 import GrammarSummary from './components/GrammarSummary.jsx'
 import AuxiliaryTrainer from './components/AuxiliaryTrainer.jsx'
 import TenseTrainer from './components/TenseTrainer.jsx'
+import VerbsExplorer from './components/VerbsExplorer.jsx'
 import ConnectorsPanel from './components/ConnectorsPanel.jsx'
 import WritingLab from './components/WritingLab.jsx'
 import VocabExplorer from './components/VocabExplorer.jsx'
@@ -12,6 +13,7 @@ import { useProgress } from './hooks/useProgress.js'
 const SECTIONS = [
   { id: 'gramatica', label: 'Gramática', icon: '📖' },
   { id: 'auxiliares', label: 'Auxiliares', icon: '🏠' },
+  { id: 'verbos', label: 'Verbos', icon: '🔤' },
   { id: 'tiempos', label: 'Tiempos', icon: '⏳' },
   { id: 'conectores', label: 'Conectores', icon: '🔗' },
   { id: 'redaccion', label: 'Redacción', icon: '✍️' },
@@ -49,6 +51,8 @@ export default function App() {
             onResult={(isCorrect) => registerResult(['auxiliares'], isCorrect)}
           />
         )}
+
+        {activeTab === 'verbos' && <VerbsExplorer />}
 
         {activeTab === 'tiempos' && (
           <TenseTrainer

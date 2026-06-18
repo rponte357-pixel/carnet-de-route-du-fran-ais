@@ -8,6 +8,7 @@ El progreso de cada entrenamiento se guarda automáticamente en el navegador (`l
 
 - **Gramática** — resumen de Passé Composé, Imparfait y Futur Proche, con la lista de los 14 verbos de être y la regla de los verbos pronominales.
 - **Auxiliares** — juego de "¿être o avoir?" con más de 40 verbos.
+- **Verbos** — conjugación completa en passé composé de los verbos más comunes, en tres grupos (auxiliar avoir, reflexivos y la casa de être), con audio en cada forma.
 - **Tiempos** — ejercicios de elección entre passé composé e imparfait, más práctica de futur proche.
 - **Conectores** — fórmulas para ganar tiempo, ordenar, opinar, contrastar, etc., con ejercicio de uso.
 - **Redacción** — plantillas tipo "rellena el hueco" para Mi Familia, Mis Vacaciones, Mi Trabajo y Mi Próximo Viaje.
@@ -108,6 +109,61 @@ Este comando recompila la app y actualiza la rama `gh-pages`. En uno o dos minut
 | Probar la versión final en local | `npm run build` y luego `npm run preview` |
 | Guardar y subir el código a GitHub | `git add .` → `git commit -m "..."` → `git push` |
 | Actualizar la web publicada (GitHub Pages) | `npm run deploy` |
+
+### Aplicar archivos modificados que vienen en un ZIP
+
+Cuando recibas una versión nueva en un `.zip` y solo quieras reemplazar los archivos que cambiaron (sin tocar el resto de tu proyecto), sigue estos pasos. El ejemplo asume que el ZIP está en `~/Downloads` y que tu proyecto está en `~/Desktop/Aplicaciones/Proyectos-GitHub/carnet-de-route-du-francais`; ajusta las rutas a tu caso.
+
+**1. Descomprime el ZIP nuevo:**
+
+```bash
+cd ~/Downloads
+unzip -o carnet-de-route-con-audio.zip
+```
+
+Esto crea una carpeta `eoi-frances-b1` con los archivos nuevos.
+
+**2. Ve a la carpeta de tu proyecto** (la que ya está conectada a GitHub):
+
+```bash
+cd ~/Desktop/Aplicaciones/Proyectos-GitHub/carnet-de-route-du-francais
+```
+
+Si no estás seguro de la ruta, escribe `pwd` para ver dónde estás.
+
+**3. Copia solo los archivos que cambiaron.** Defino primero una variable con la ruta del ZIP descomprimido para que los comandos queden más limpios:
+
+```bash
+NUEVO=~/Downloads/eoi-frances-b1
+
+cp "$NUEVO/src/components/SpeakButton.jsx"      src/components/SpeakButton.jsx
+cp "$NUEVO/src/components/FlashcardDeck.jsx"    src/components/FlashcardDeck.jsx
+cp "$NUEVO/src/components/AuxiliaryTrainer.jsx" src/components/AuxiliaryTrainer.jsx
+cp "$NUEVO/src/components/VocabQuiz.jsx"        src/components/VocabQuiz.jsx
+cp "$NUEVO/src/components/TenseTrainer.jsx"     src/components/TenseTrainer.jsx
+cp "$NUEVO/src/index.css"                       src/index.css
+cp "$NUEVO/README.md"                           README.md
+```
+
+(El primero es un archivo nuevo; los demás sobrescriben los existentes. Quita la línea del `README.md` si no quieres actualizarlo.)
+
+**4. Comprueba que copió bien y que compila:**
+
+```bash
+git status      # muestra en rojo los archivos modificados
+npm run build   # confirma que no hay errores
+```
+
+**5. Sube y publica:**
+
+```bash
+git add .
+git commit -m "Describe aquí qué cambiaste"
+git push
+npm run deploy
+```
+
+> Si prefieres reemplazar toda la carpeta de código de golpe en lugar de archivo por archivo, puedes hacer `cp -R "$NUEVO/src/." src/` (copia el contenido de `src` del ZIP sobre el tuyo). Úsalo solo si quieres sustituir **todo** `src`.
 
 ## Ampliar el contenido
 

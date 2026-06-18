@@ -838,3 +838,112 @@ button {
   0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.45); }
   50% { box-shadow: 0 0 0 6px rgba(217, 119, 6, 0); }
 }
+
+/* ---------- Pestaña de verbos ---------- */
+
+.verb-note {
+  background: #fff7ea;
+  border: 1px solid var(--line);
+  border-left: 3px solid #d97706;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink, #2b2b2b);
+  margin-bottom: 18px;
+}
+
+.verb-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.verb-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper, #fff);
+  overflow: hidden;
+}
+
+.verb-item--open {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+}
+
+.verb-item__head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 6px;
+}
+
+.verb-item__toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 10px 6px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.verb-item__arrow {
+  color: #d97706;
+  font-size: 13px;
+  width: 14px;
+}
+
+.verb-item__fr {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.verb-item__participle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #d97706;
+}
+
+.verb-item__es {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.conjugation {
+  list-style: none;
+  margin: 0;
+  padding: 4px 14px 14px;
+  border-top: 1px dashed var(--line);
+}
+
+.conjugation__line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+.conjugation__line:last-child {
+  border-bottom: none;
+}
+
+.conjugation__text {
+  font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .verb-item__es {
+    display: none;
+  }
+  .verb-item__fr {
+    font-size: 16px;
+  }
+}
