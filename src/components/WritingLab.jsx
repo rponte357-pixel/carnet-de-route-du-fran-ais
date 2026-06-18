@@ -18,8 +18,8 @@ function escapeHtml(str) {
 export default function WritingLab() {
   return (
     <div>
-      <p className="page-eyebrow">Redacciones modeladas</p>
-      <h2 className="page-title">Tu entrevista o redacción, lista</h2>
+      <p className="page-eyebrow">Rédactions modèles</p>
+      <h2 className="page-title">Ton entretien ou ta rédaction, prêts</h2>
       <p className="page-intro">
         Rellena los huecos con tus datos reales. El texto se actualiza al momento
         para que practiques leyéndolo en voz alta, tal como lo dirías en el examen.

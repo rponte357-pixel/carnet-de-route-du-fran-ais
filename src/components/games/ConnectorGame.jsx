@@ -58,7 +58,7 @@ function LevelSelect({ unlocked, totalScore, onPick }) {
   return (
     <div className="cg">
       <p className="page-eyebrow">La Machine à Phrases</p>
-      <h3 className="cg__h3">Construye argumentos con los conectores correctos</h3>
+      <h3 className="cg__h3">Construis des arguments avec les bons connecteurs</h3>
       <p className="page-intro">
         Coloca cada conector en su hueco para completar el párrafo. Aciertos
         seguidos suben tu combo; sé rápido para ganar bonus de tiempo. Al
@@ -201,10 +201,10 @@ function LevelPlay({ level, levelNumber, totalLevels, onExit, onComplete, onNext
 
   return (
     <div className="cg">
-      <button type="button" className="back-link" onClick={onExit}>← Niveles</button>
+      <button type="button" className="back-link" onClick={onExit}>← Niveaux</button>
 
       <div className="cg__hud">
-        <span className="cg__hud-level">Nivel {levelNumber}/{totalLevels}{level.level ? ` · ${level.level}` : ''}</span>
+        <span className="cg__hud-level">Niveau {levelNumber}/{totalLevels}{level.level ? ` · ${level.level}` : ''}</span>
         <span className="cg__hud-points">⭐ {points}</span>
         <span className={'cg__hud-combo' + (combo >= 2 ? ' cg__hud-combo--hot' : '')}>
           {combo >= 2 ? `🔥 Combo x${combo}` : `Combo x${combo}`}

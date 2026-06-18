@@ -6,10 +6,10 @@ import Hangman from './games/Hangman.jsx'
 import ConnectorGame from './games/ConnectorGame.jsx'
 
 const GAMES = [
-  { id: 'crossword', title: 'Mots Croisés', eyebrow: 'Ortografía', variant: 'connectors', desc: 'Rellena la cuadrícula con palabras francesas a partir de las pistas.' },
-  { id: 'wordwheel', title: 'Roue des Lettres', eyebrow: 'Vocabulario', variant: 'tenses', desc: 'Forma palabras francesas con las letras de la rueda.' },
-  { id: 'hangman', title: 'Le Pendu', eyebrow: 'Adivina', variant: 'house', desc: 'Adivina la palabra francesa letra a letra antes de quedarte sin intentos.' },
-  { id: 'connectors', title: 'Machine à Phrases', eyebrow: 'Conectores', variant: 'editorial', desc: 'Coloca los conectores correctos para construir párrafos con sentido.' },
+  { id: 'crossword', title: 'Mots Croisés', eyebrow: 'Orthographe', variant: 'connectors', desc: 'Rellena la cuadrícula con palabras francesas a partir de las pistas.' },
+  { id: 'wordwheel', title: 'Roue des Lettres', eyebrow: 'Vocabulaire', variant: 'tenses', desc: 'Forma palabras francesas con las letras de la rueda.' },
+  { id: 'hangman', title: 'Le Pendu', eyebrow: 'Devine', variant: 'house', desc: 'Adivina la palabra francesa letra a letra antes de quedarte sin intentos.' },
+  { id: 'connectors', title: 'Machine à Phrases', eyebrow: 'Connecteurs', variant: 'editorial', desc: 'Coloca los conectores correctos para construir párrafos con sentido.' },
 ]
 
 export default function GamesHub() {
@@ -21,8 +21,8 @@ export default function GamesHub() {
   if (game === null) {
     return (
       <div>
-        <p className="page-eyebrow">Zona de juegos</p>
-        <h2 className="page-title">Juegos de vocabulario</h2>
+        <p className="page-eyebrow">Espace jeux</p>
+        <h2 className="page-title">Jeux de vocabulaire</h2>
         <p className="page-intro">
           Practica el francés jugando. Elige un juego para empezar.
         </p>
@@ -52,7 +52,7 @@ export default function GamesHub() {
   return (
     <div>
       <button type="button" className="back-link" onClick={() => setGame(null)}>
-        ← Juegos
+        ← Jeux
       </button>
       <h2 className="page-title" style={{ marginTop: 8 }}>{meta.title}</h2>
 

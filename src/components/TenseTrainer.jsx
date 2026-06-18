@@ -36,7 +36,7 @@ export default function TenseTrainer({ stats, onResult }) {
 
   return (
     <div>
-      <p className="page-eyebrow">Entrenamiento de tiempos</p>
+      <p className="page-eyebrow">Entraînement des temps</p>
       <h2 className="page-title">Passé composé vs. imparfait</h2>
       <p className="page-intro">
         Lee la frase y elige la combinación de tiempos correcta. Presta atención a

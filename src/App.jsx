@@ -37,7 +37,7 @@ export default function App() {
           className="back-link"
           onClick={() => setActiveTab(null)}
         >
-          ← Inicio
+          ← Accueil
         </button>
         <div className="app-header__mark">
           <div className="app-header__stamp" aria-hidden="true">

@@ -8,8 +8,8 @@ export default function GrammarSummary() {
 
   return (
     <div>
-      <p className="page-eyebrow">Resumen relámpago</p>
-      <h2 className="page-title">El pasado obligatorio</h2>
+      <p className="page-eyebrow">Résumé éclair</p>
+      <h2 className="page-title">Le passé incontournable</h2>
       <p className="page-intro">
         En los niveles A2 y B1 hay que dominar dos tiempos del pasado y saber elegir
         entre ellos sin dudar. Aquí tienes la regla de oro de cada uno, antes de pasar al

@@ -19,8 +19,8 @@ export default function VerbsExplorer() {
 
   return (
     <div>
-      <p className="page-eyebrow">Verbos y conjugación</p>
-      <h2 className="page-title">Passé composé: conjugación completa</h2>
+      <p className="page-eyebrow">Verbes et conjugaison</p>
+      <h2 className="page-title">Passé composé : conjugaison complète</h2>
       <p className="page-intro">
         Los verbos más comunes en francés, conjugados en passé composé con las
         seis personas. Toca un verbo para desplegar su conjugación y usa el

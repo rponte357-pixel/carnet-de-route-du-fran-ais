@@ -13,8 +13,8 @@ export default function VocabExplorer({ vocabStats, onResult }) {
 
   return (
     <div>
-      <p className="page-eyebrow">Vocabulario temático</p>
-      <h2 className="page-title">Familia, trabajo, nacionalidad, comida y viajes</h2>
+      <p className="page-eyebrow">Vocabulaire thématique</p>
+      <h2 className="page-title">Famille, travail, nationalité, nourriture et voyages</h2>
       <p className="page-intro">
         El vocabulario temático es el que más rentabilidad da en la prueba oral:
         hablar de uno mismo, de tu trabajo y de tus viajes. Elige una
@@ -44,7 +44,7 @@ export default function VocabExplorer({ vocabStats, onResult }) {
           className="mode-toggle__btn"
           onClick={() => setMode('flashcards')}
         >
-          🃏 Tarjetas
+          🃏 Cartes
         </button>
         <button
           type="button"

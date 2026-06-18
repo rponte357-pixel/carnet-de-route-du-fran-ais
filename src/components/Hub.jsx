@@ -3,15 +3,15 @@
 // paleta y secciones de Carnet de Route.
 
 const BUBBLES = [
-  { id: 'gramatica', eyebrow: 'Repaso', title: 'Gramática', variant: 'academic' },
-  { id: 'auxiliares', eyebrow: 'Práctica', title: 'Auxiliares', variant: 'house' },
-  { id: 'verbos', eyebrow: 'Conjugación', title: 'Verbos', variant: 'verbs' },
-  { id: 'tiempos', eyebrow: 'Práctica', title: 'Tiempos', variant: 'tenses' },
-  { id: 'conectores', eyebrow: 'Expresión', title: 'Conectores', variant: 'connectors' },
-  { id: 'redaccion', eyebrow: 'Escritura', title: 'Redacción', variant: 'editorial' },
-  { id: 'vocabulario', eyebrow: 'Léxico', title: 'Vocabulario', variant: 'flags' },
-  { id: 'juegos', eyebrow: 'Jugar', title: 'Juegos', variant: 'playful' },
-  { id: 'progreso', eyebrow: 'Seguimiento', title: 'Progreso', variant: 'progress' },
+  { id: 'gramatica', eyebrow: 'Révision', title: 'Grammaire', variant: 'academic' },
+  { id: 'auxiliares', eyebrow: 'Entraînement', title: 'Auxiliaires', variant: 'house' },
+  { id: 'verbos', eyebrow: 'Conjugaison', title: 'Verbes', variant: 'verbs' },
+  { id: 'tiempos', eyebrow: 'Entraînement', title: 'Temps', variant: 'tenses' },
+  { id: 'conectores', eyebrow: 'Expression', title: 'Connecteurs', variant: 'connectors' },
+  { id: 'redaccion', eyebrow: 'Écriture', title: 'Rédaction', variant: 'editorial' },
+  { id: 'vocabulario', eyebrow: 'Lexique', title: 'Vocabulaire', variant: 'flags' },
+  { id: 'juegos', eyebrow: 'Jouer', title: 'Jeux', variant: 'playful' },
+  { id: 'progreso', eyebrow: 'Suivi', title: 'Progrès', variant: 'progress' },
 ]
 
 export default function Hub({ onSelect }) {

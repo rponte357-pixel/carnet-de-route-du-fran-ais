@@ -20,8 +20,8 @@ function Stat({ label, stats }) {
 export default function ProgressDashboard({ progress, onReset }) {
   return (
     <div>
-      <p className="page-eyebrow">Tu pasaporte de estudio</p>
-      <h2 className="page-title">Progreso</h2>
+      <p className="page-eyebrow">Ton passeport d'étude</p>
+      <h2 className="page-title">Progrès</h2>
       <p className="page-intro">
         Un resumen de tus sesiones de entrenamiento. Se guarda en este navegador,
         así que puedes cerrar la pestaña y seguir donde lo dejaste.

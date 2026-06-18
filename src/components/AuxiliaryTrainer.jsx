@@ -28,8 +28,8 @@ export default function AuxiliaryTrainer({ stats, onResult }) {
 
   return (
     <div>
-      <p className="page-eyebrow">Entrenamiento auxiliares</p>
-      <h2 className="page-title">¿Être o avoir?</h2>
+      <p className="page-eyebrow">Entraînement auxiliaires</p>
+      <h2 className="page-title">Être ou avoir ?</h2>
       <p className="page-intro">
         Haz clic en el auxiliar correcto para este verbo en Passé Composé.
         Cuantos más verbos repases, más rápido reconocerás el patrón el día del examen.
