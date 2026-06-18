@@ -1233,34 +1233,39 @@ button {
 }
 .cw__clue-len { color: var(--ink-soft); font-family: var(--font-mono); font-size: 12px; }
 
-/* ---------- Rueda de letras ---------- */
+/* ---------- Rueda de letras (hilo) ---------- */
 .ww__score {
   font-family: var(--font-mono);
   font-size: 13px;
   color: var(--ink-soft);
   margin-bottom: 14px;
 }
-.ww__slots {
+.ww__target {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.ww__target-hint {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.ww__target-slots {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.ww__slot {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 8px 12px;
-  background: var(--card);
-}
-.ww__slot--found { border-color: var(--stamp-green); background: #eef6f1; }
-.ww__slot-word {
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 2px;
+.ww__target-box {
+  width: 30px;
+  height: 38px;
+  border-bottom: 3px solid var(--ink-soft);
   display: flex;
   align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
 }
-.ww__slot-hint { font-size: 13px; color: var(--ink-soft); font-style: italic; }
+.ww__target-box--shown { border-bottom-color: var(--stamp-green); }
 .ww__current {
   min-height: 38px;
   border: 1px dashed var(--line);
@@ -1274,50 +1279,41 @@ button {
   margin-bottom: 16px;
 }
 .ww__current--ok { border-color: var(--stamp-green); background: #eef6f1; }
-.ww__current--ko { border-color: var(--postbox); background: #f9e9e4; }
-.ww__current--dup { border-color: var(--gold); background: #f7efd9; }
+.ww__current--ko { border-color: var(--postbox); background: #f9e9e4; letter-spacing: 0; font-size: 15px; font-weight: 400; }
+.ww__current--tracing { border-color: var(--gold); }
 .ww__placeholder { color: var(--ink-soft); font-size: 14px; font-weight: 400; letter-spacing: 0; }
-.ww__wheel {
-  position: relative;
-  width: 240px;
-  height: 240px;
+.ww__svg {
+  display: block;
+  width: 280px;
+  max-width: 100%;
   margin: 0 auto 18px;
+  touch-action: none;
+  user-select: none;
 }
-.ww__letter {
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--gold);
-  background: var(--card);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--ink);
-  cursor: pointer;
-  transition: transform 0.12s, background 0.12s;
+.ww__svg-bg { fill: var(--card); stroke: var(--line); stroke-width: 1.5; }
+.ww__thread {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.8;
 }
-.ww__letter:hover:not(:disabled) { transform: scale(1.1); background: #f7efd9; }
-.ww__center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  background: var(--stamp-green);
-  color: #fff;
+.ww__thread--ko { stroke: var(--postbox); }
+.ww__node circle {
+  fill: var(--paper);
+  stroke: var(--gold);
+  stroke-width: 2;
+  transition: fill 0.1s;
+}
+.ww__node text {
+  fill: var(--ink);
   font-size: 22px;
-  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-body);
 }
-.ww__center:disabled { opacity: 0.4; cursor: default; }
-.ww__controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 16px;
-}
+.ww__node--active circle { fill: var(--gold); }
+.ww__node--active text { fill: #fff; }
 
 /* ---------- Ahorcado ---------- */
 .hm__gallows {
@@ -1375,6 +1371,6 @@ button {
 @media (max-width: 600px) {
   .cw__cell, .cw__void { width: 34px; height: 34px; }
   .cw__cell input { font-size: 16px; }
-  .ww__wheel { width: 220px; height: 220px; }
+  .ww__svg { width: 250px; }
   .hm__key { width: 32px; height: 40px; font-size: 14px; }
 }

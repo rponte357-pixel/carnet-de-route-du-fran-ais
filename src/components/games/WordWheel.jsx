@@ -1,146 +1,255 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import SpeakButton from '../SpeakButton.jsx'
 
-// Rueda de letras: toca letras para formar palabras francesas válidas.
+// Rueda de letras con HILO: deslizas el dedo (o el ratón) uniendo las
+// letras para formar la palabra. Modo "palabra a palabra": se muestra
+// una sola palabra objetivo (pista + casillas); al acertar pasa a la
+// siguiente. Al completar todas, fin de ronda.
 
-function normalize(s) {
-  return String(s).trim().toUpperCase()
+const SIZE = 300
+const RADIUS = 108
+const NODE_R = 26
+const HIT_R = 36
+
+function strip(s) {
+  return String(s).trim().toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 
-function wheelPositions(n, r) {
-  const out = []
-  for (let i = 0; i < n; i++) {
-    const angle = (-Math.PI / 2) + (i * 2 * Math.PI) / n
-    out.push({ x: Math.cos(angle) * r, y: Math.sin(angle) * r })
+function shuffle(arr) {
+  const a = [...arr]
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[a[i], a[j]] = [a[j], a[i]]
   }
-  return out
+  return a
+}
+
+// Construye el conjunto de letras de la rueda para una palabra: usa las
+// letras de la palabra y, si la ronda da letras extra, añade algunas
+// como distractores hasta un mínimo, todo barajado.
+function buildWheelLetters(targetWord, extraPool) {
+  const base = strip(targetWord).split('')
+  const pool = (extraPool || []).map((l) => strip(l)).filter(Boolean)
+  // Añadir distractores que no rompan (hasta llegar a 7-8 nodos)
+  const target = Math.min(8, Math.max(6, base.length + 2))
+  let i = 0
+  while (base.length < target && pool.length > 0) {
+    base.push(pool[i % pool.length])
+    i++
+    if (i > 20) break
+  }
+  return shuffle(base)
 }
 
 export default function WordWheel({ wheel }) {
+  const svgRef = useRef(null)
   const total = wheel.words.length
-  const [current, setCurrent] = useState([])
-  const [found, setFound] = useState([]) // índices encontrados
-  const [flash, setFlash] = useState(null) // 'ok' | 'ko' | 'dup'
-  const [revealed, setRevealed] = useState(false)
 
-  const positions = useMemo(() => wheelPositions(wheel.letters.length, 96), [wheel])
-  const wordIndex = useMemo(() => {
-    const map = new Map()
-    wheel.words.forEach((w, i) => map.set(normalize(w.word), i))
-    return map
+  const [pos, setPos] = useState(0)        // índice de la palabra actual
+  const [solved, setSolved] = useState(0)  // cuántas resueltas
+  const [trace, setTrace] = useState([])   // índices de nodos en orden
+  const [cursor, setCursor] = useState(null)
+  const [tracing, setTracing] = useState(false)
+  const [flash, setFlash] = useState(null) // 'ok' | 'ko'
+  const [revealed, setRevealed] = useState(false)
+  const [done, setDone] = useState(false)
+
+  const currentWord = wheel.words[pos]
+
+  // Letras de la rueda para la palabra actual (barajadas una vez por palabra)
+  const wheelLetters = useMemo(
+    () => buildWheelLetters(currentWord.word, wheel.letters),
+    [currentWord, wheel.letters]
+  )
+
+  const nodes = useMemo(
+    () =>
+      wheelLetters.map((letter, i) => {
+        const angle = -Math.PI / 2 + (i * 2 * Math.PI) / wheelLetters.length
+        return {
+          letter,
+          x: SIZE / 2 + Math.cos(angle) * RADIUS,
+          y: SIZE / 2 + Math.sin(angle) * RADIUS,
+        }
+      }),
+    [wheelLetters]
+  )
+
+  // Reset al cambiar de ronda
+  useEffect(() => {
+    setPos(0); setSolved(0); setTrace([]); setCursor(null)
+    setTracing(false); setFlash(null); setRevealed(false); setDone(false)
   }, [wheel])
 
-  const done = found.length === total
+  const locked = flash === 'ok' || revealed || done
 
-  function tap(letter) {
-    if (done || revealed) return
-    setCurrent((c) => [...c, letter])
+  function svgPoint(e) {
+    const rect = svgRef.current.getBoundingClientRect()
+    return {
+      x: ((e.clientX - rect.left) * SIZE) / rect.width,
+      y: ((e.clientY - rect.top) * SIZE) / rect.height,
+    }
+  }
+
+  function nodeAt(p) {
+    let best = -1, bestDist = Infinity
+    nodes.forEach((n, i) => {
+      const d = Math.hypot(n.x - p.x, n.y - p.y)
+      if (d < HIT_R && d < bestDist) { bestDist = d; best = i }
+    })
+    return best
+  }
+
+  function handleDown(e) {
+    if (locked) return
+    const p = svgPoint(e)
+    const i = nodeAt(p)
+    if (i < 0) return
+    e.preventDefault()
+    try { svgRef.current.setPointerCapture(e.pointerId) } catch { /* ignore */ }
+    setTracing(true)
+    setTrace([i])
+    setCursor(p)
     setFlash(null)
   }
 
-  function check() {
-    if (current.length === 0) return
-    const word = current.join('')
-    const idx = wordIndex.get(normalize(word))
-    if (idx === undefined) {
+  function handleMove(e) {
+    if (!tracing || locked) return
+    e.preventDefault()
+    const p = svgPoint(e)
+    setCursor(p)
+    const i = nodeAt(p)
+    if (i < 0) return
+    setTrace((t) => {
+      if (t.length >= 2 && i === t[t.length - 2]) return t.slice(0, -1) // retroceder
+      if (t.includes(i)) return t
+      return [...t, i]
+    })
+  }
+
+  function handleUp() {
+    if (!tracing) return
+    setTracing(false)
+    setCursor(null)
+    const word = trace.map((i) => nodes[i].letter).join('')
+    setTrace([])
+    if (word.length < 2) return
+
+    if (strip(word) === strip(currentWord.word)) {
+      setFlash('ok')
+      const nextSolved = solved + 1
+      setTimeout(() => {
+        setSolved(nextSolved)
+        setFlash(null)
+        if (pos + 1 >= total) {
+          setDone(true)
+        } else {
+          setPos((p) => p + 1)
+        }
+      }, 900)
+    } else {
       setFlash('ko')
-      setTimeout(() => { setCurrent([]); setFlash(null) }, 600)
-      return
+      setTimeout(() => setFlash(null), 700)
     }
-    if (found.includes(idx)) {
-      setFlash('dup')
-      setTimeout(() => { setCurrent([]); setFlash(null) }, 600)
-      return
-    }
-    setFlash('ok')
-    setFound((f) => [...f, idx])
-    setTimeout(() => { setCurrent([]); setFlash(null) }, 500)
   }
 
   function reset() {
-    setCurrent([])
-    setFound([])
-    setFlash(null)
-    setRevealed(false)
+    setPos(0); setSolved(0); setTrace([]); setCursor(null)
+    setTracing(false); setFlash(null); setRevealed(false); setDone(false)
+  }
+
+  const liveWord = trace.map((i) => nodes[i].letter).join('')
+  const threadPoints = trace.map((i) => `${nodes[i].x},${nodes[i].y}`).join(' ')
+
+  // Casillas de la palabra actual (se rellenan al acertar o al rendirse)
+  const targetLetters = currentWord.word.split('')
+  const showSolution = flash === 'ok' || revealed
+
+  if (done) {
+    return (
+      <div className="ww">
+        <div className="feedback-banner feedback-banner--ok">
+          ¡Ronda completa! Has encontrado las {total} palabras.
+        </div>
+        <button type="button" className="btn" onClick={reset}>Jugar de nuevo</button>
+      </div>
+    )
   }
 
   return (
     <div className="ww">
       <p className="cw__prompt">{wheel.prompt}</p>
 
-      <div className="ww__score">
-        {found.length} / {total} encontradas
+      <div className="ww__score">{solved} / {total} encontradas</div>
+
+      {/* Palabra objetivo actual: pista + casillas */}
+      <div className="ww__target">
+        <div className="ww__target-hint">Pista: <strong>{currentWord.hint}</strong></div>
+        <div className="ww__target-slots">
+          {targetLetters.map((l, i) => (
+            <span key={i} className={'ww__target-box' + (showSolution ? ' ww__target-box--shown' : '')}>
+              {showSolution ? l : ''}
+            </span>
+          ))}
+          {showSolution && <SpeakButton text={currentWord.word} size="small" />}
+        </div>
       </div>
 
-      <div className="ww__slots">
-        {wheel.words.map((w, i) => {
-          const isFound = found.includes(i)
-          const show = isFound || revealed
+      {/* Palabra que se está trazando / resultado */}
+      <div className={'ww__current ww__current--' + (flash || (tracing ? 'tracing' : 'idle'))}>
+        {liveWord || (flash === 'ko' ? 'Inténtalo otra vez' : <span className="ww__placeholder">Desliza para unir letras…</span>)}
+      </div>
+
+      {/* Rueda con hilo */}
+      <svg
+        ref={svgRef}
+        className="ww__svg"
+        viewBox={`0 0 ${SIZE} ${SIZE}`}
+        onPointerDown={handleDown}
+        onPointerMove={handleMove}
+        onPointerUp={handleUp}
+        onPointerCancel={handleUp}
+        onPointerLeave={() => tracing && handleUp()}
+        role="application"
+        aria-label="Rueda de letras: desliza para unir letras y formar la palabra"
+      >
+        <circle cx={SIZE / 2} cy={SIZE / 2} r={RADIUS + NODE_R + 6} className="ww__svg-bg" />
+
+        {trace.length > 0 && (
+          <polyline
+            points={threadPoints + (cursor ? ` ${cursor.x},${cursor.y}` : '')}
+            className={'ww__thread' + (flash === 'ko' ? ' ww__thread--ko' : '')}
+          />
+        )}
+
+        {nodes.map((n, i) => {
+          const active = trace.includes(i)
           return (
-            <div key={i} className={'ww__slot' + (isFound ? ' ww__slot--found' : '')}>
-              <div className="ww__slot-word">
-                {show ? w.word : '•'.repeat(w.word.length)}
-                {show && <SpeakButton text={w.word} size="small" />}
-              </div>
-              <div className="ww__slot-hint">{w.hint}</div>
-            </div>
+            <g key={i} className={'ww__node' + (active ? ' ww__node--active' : '')}>
+              <circle cx={n.x} cy={n.y} r={NODE_R} />
+              <text x={n.x} y={n.y + 7} textAnchor="middle">{n.letter}</text>
+            </g>
           )
         })}
-      </div>
+      </svg>
 
-      <div className={'ww__current ww__current--' + (flash || 'idle')}>
-        {current.length === 0
-          ? <span className="ww__placeholder">Toca las letras…</span>
-          : current.join(' ')}
-      </div>
-
-      <div className="ww__wheel">
-        {wheel.letters.map((letter, i) => (
-          <button
-            key={i}
-            type="button"
-            className="ww__letter"
-            style={{
-              left: `calc(50% + ${positions[i].x}px - 24px)`,
-              top: `calc(50% + ${positions[i].y}px - 24px)`,
-            }}
-            onClick={() => tap(letter)}
-            disabled={done || revealed}
-          >
-            {letter}
-          </button>
-        ))}
+      {!revealed && flash !== 'ok' && (
+        <button type="button" className="btn btn--ghost" onClick={() => setRevealed(true)}>
+          Ver la respuesta
+        </button>
+      )}
+      {revealed && (
         <button
           type="button"
-          className="ww__center"
-          onClick={check}
-          disabled={current.length === 0 || done || revealed}
-          aria-label="Comprobar palabra"
+          className="btn"
+          onClick={() => {
+            setRevealed(false)
+            if (pos + 1 >= total) setDone(true)
+            else { setPos((p) => p + 1); setSolved((s) => s) }
+          }}
         >
-          ✓
+          Siguiente palabra →
         </button>
-      </div>
-
-      <div className="ww__controls">
-        <button type="button" className="btn btn--ghost" onClick={() => setCurrent((c) => c.slice(0, -1))} disabled={current.length === 0 || done || revealed}>
-          ⌫ Borrar
-        </button>
-        <button type="button" className="btn btn--ghost" onClick={() => setCurrent([])} disabled={current.length === 0 || done || revealed}>
-          Limpiar
-        </button>
-      </div>
-
-      {done ? (
-        <>
-          <div className="feedback-banner feedback-banner--ok">¡Has encontrado todas las palabras!</div>
-          <button type="button" className="btn" onClick={reset}>Jugar de nuevo</button>
-        </>
-      ) : !revealed ? (
-        <button type="button" className="btn btn--ghost" onClick={() => setRevealed(true)}>
-          Rendirse y ver soluciones
-        </button>
-      ) : (
-        <button type="button" className="btn" onClick={reset}>Jugar de nuevo</button>
       )}
     </div>
   )

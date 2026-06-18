@@ -158,42 +158,44 @@ export const crosswordPuzzles = [
 ]
 
 // ====== RUEDA DE LETRAS (Word Wheel) ======
-// Un conjunto de letras; se forman palabras francesas válidas.
+// Modo hilo + palabra a palabra: cada palabra genera su propia rueda con
+// sus letras (más algún distractor de 'letters'). 'letters' es opcional
+// y solo aporta distractores; las palabras ya no tienen que compartir set.
 export const wordWheels = [
   {
-    id: 'ww-1', title: 'Ronda 1',
-    prompt: 'Forma palabras francesas tocando las letras.',
-    letters: ['A', 'M', 'I', 'R', 'E', 'S'],
-    words: [
-      { word: 'MER', hint: 'El mar' },
-      { word: 'AMI', hint: 'El amigo' },
-      { word: 'MISE', hint: 'La puesta / apuesta' },
-      { word: 'MAIRE', hint: 'El alcalde' },
-      { word: 'MARIE', hint: 'Casado/a' },
-    ],
-  },
-  {
-    id: 'ww-2', title: 'Ronda 2',
-    prompt: 'Forma palabras francesas tocando las letras.',
-    letters: ['T', 'A', 'B', 'L', 'E', 'O'],
+    id: 'ww-1', title: 'Casa y objetos',
+    prompt: 'Desliza para formar la palabra francesa de cada pista.',
+    letters: ['S', 'N', 'R', 'T'],
     words: [
       { word: 'TABLE', hint: 'La mesa' },
-      { word: 'BOL', hint: 'El cuenco' },
-      { word: 'LOT', hint: 'El lote' },
-      { word: 'BLE', hint: 'El trigo' },
-      { word: 'BAL', hint: 'El baile' },
+      { word: 'PORTE', hint: 'La puerta' },
+      { word: 'LIT', hint: 'La cama' },
+      { word: 'MUR', hint: 'La pared' },
+      { word: 'CLE', hint: 'La llave' },
     ],
   },
   {
-    id: 'ww-3', title: 'Ronda 3',
-    prompt: 'Forma palabras francesas tocando las letras.',
-    letters: ['P', 'O', 'R', 'T', 'E', 'S'],
+    id: 'ww-2', title: 'Comida',
+    prompt: 'Desliza para formar la palabra francesa de cada pista.',
+    letters: ['S', 'N', 'L', 'R'],
     words: [
-      { word: 'PORT', hint: 'El puerto' },
-      { word: 'PORTE', hint: 'La puerta' },
-      { word: 'ROSE', hint: 'La rosa' },
-      { word: 'SPORT', hint: 'El deporte' },
-      { word: 'POSTE', hint: 'Correos / el puesto' },
+      { word: 'PAIN', hint: 'El pan' },
+      { word: 'EAU', hint: 'El agua' },
+      { word: 'VIN', hint: 'El vino' },
+      { word: 'POMME', hint: 'La manzana' },
+      { word: 'CAFE', hint: 'El café' },
+    ],
+  },
+  {
+    id: 'ww-3', title: 'Naturaleza',
+    prompt: 'Desliza para formar la palabra francesa de cada pista.',
+    letters: ['T', 'S', 'R', 'N'],
+    words: [
+      { word: 'MER', hint: 'El mar' },
+      { word: 'SOLEIL', hint: 'El sol' },
+      { word: 'FLEUR', hint: 'La flor' },
+      { word: 'ARBRE', hint: 'El árbol' },
+      { word: 'NEIGE', hint: 'La nieve' },
     ],
   },
 ];
