@@ -12,6 +12,14 @@ const DEFAULT_PROGRESS = {
     nacionalidad: { correct: 0, incorrect: 0 },
     comida: { correct: 0, incorrect: 0 },
     viajes: { correct: 0, incorrect: 0 },
+    casa: { correct: 0, incorrect: 0 },
+    salud: { correct: 0, incorrect: 0 },
+    ocio: { correct: 0, incorrect: 0 },
+    ciudad: { correct: 0, incorrect: 0 },
+    ropa: { correct: 0, incorrect: 0 },
+    naturaleza: { correct: 0, incorrect: 0 },
+    estudios: { correct: 0, incorrect: 0 },
+    tecnologia: { correct: 0, incorrect: 0 },
   },
 }
 

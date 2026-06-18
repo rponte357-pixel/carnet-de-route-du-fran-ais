@@ -14,7 +14,7 @@ La app abre en una **pantalla de inicio con burbujas**: cada burbuja lleva a una
 - **Tiempos** — ejercicios de elección entre passé composé e imparfait, más práctica de futur proche.
 - **Conectores** — fórmulas para ganar tiempo, ordenar, opinar, contrastar, etc., con ejercicio de uso.
 - **Redacción** — plantillas tipo "rellena el hueco" para Mi Familia, Mis Vacaciones, Mi Trabajo y Mi Próximo Viaje.
-- **Vocabulario** — tarjetas (flashcards) y quiz de opción múltiple para 5 categorías: familia, trabajo/profesiones, nacionalidad, comida y viajes (más de 120 palabras en total).
+- **Vocabulario** — tarjetas (flashcards) y quiz de opción múltiple para 13 categorías temáticas: familia, trabajo y profesiones, nacionalidad, comida, viajes, casa y vida diaria, salud y cuerpo, tiempo libre y aficiones, ciudad y transporte, ropa y compras, naturaleza y medio ambiente, estudios y educación, y tecnología e internet (más de 450 palabras en total).
 - **Progreso** — panel resumen con tu porcentaje de aciertos por categoría.
 - **Audio en francés** — botón de altavoz 🔊 en las tarjetas, el entrenador de auxiliares, el quiz y los ejercicios de tiempos. Usa la voz del propio navegador (no necesita conexión ni instalar nada). El sonido se activa tras el primer clic en la página, como exigen los navegadores.
 
