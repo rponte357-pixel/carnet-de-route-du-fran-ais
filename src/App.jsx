@@ -41,12 +41,12 @@ export default function App() {
         </button>
         <div className="app-header__mark">
           <div className="app-header__stamp" aria-hidden="true">
-            <span>EOI</span>
+            <span>A2</span>
             <span>B1</span>
           </div>
           <div>
             <div className="app-header__title">Carnet de Route</div>
-            <div className="app-header__subtitle">Repaso para el francés B1 · EOI</div>
+            <div className="app-header__subtitle">Repaso de francés · niveles A2–B1</div>
           </div>
         </div>
       </header>

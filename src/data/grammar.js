@@ -1,5 +1,5 @@
 // Contenido de gramática basado en el "Resumen Relámpago" + ampliado
-// para cubrir lo que suele pedirse en la prueba B1 de la EOI.
+// para cubrir lo esencial de los niveles A2 y B1.
 
 export const pastTenses = {
   passeCompose: {

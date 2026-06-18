@@ -16,8 +16,8 @@ export default function VocabExplorer({ vocabStats, onResult }) {
       <p className="page-eyebrow">Vocabulario temático</p>
       <h2 className="page-title">Familia, trabajo, nacionalidad, comida y viajes</h2>
       <p className="page-intro">
-        El vocabulario temático es el que más rentabilidad da en la prueba oral
-        de la EOI: hablar de uno mismo, de tu trabajo y de tus viajes. Elige una
+        El vocabulario temático es el que más rentabilidad da en la prueba oral:
+        hablar de uno mismo, de tu trabajo y de tus viajes. Elige una
         categoría y alterna entre tarjetas de repaso y el quiz para fijarlo.
       </p>
 

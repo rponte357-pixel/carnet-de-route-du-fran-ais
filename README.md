@@ -1,6 +1,6 @@
-# Carnet de Route — Repaso Francés B1 (EOI)
+# Carnet de Route — Repaso de Francés A2–B1
 
-Aplicación React para preparar la prueba oficial de **Francés B1 de la EOI**: gramática esencial, entrenamiento de auxiliares (être/avoir), passé composé vs. imparfait, conectores de nivel B1, redacciones modeladas y vocabulario temático (familia, trabajo y profesiones, nacionalidad, comida y viajes).
+Aplicación React para repasar **francés en los niveles A2 y B1**: gramática esencial, entrenamiento de auxiliares (être/avoir), passé composé vs. imparfait, conectores, redacciones modeladas, vocabulario temático y una zona de juegos.
 
 El progreso de cada entrenamiento se guarda automáticamente en el navegador (`localStorage`), así que puedes cerrar la pestaña y seguir donde lo dejaste.
 
@@ -47,7 +47,7 @@ Los archivos finales se generan en la carpeta `dist/`.
 ```bash
 git init
 git add .
-git commit -m "Carnet de Route: app de repaso para el francés B1 (EOI)"
+git commit -m "Carnet de Route: app de repaso de francés A2-B1"
 git branch -M main
 git remote add origin https://github.com/TU-USUARIO/TU-REPOSITORIO.git
 git push -u origin main

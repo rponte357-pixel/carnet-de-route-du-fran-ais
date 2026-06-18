@@ -1,4 +1,4 @@
-// Vocabulario temático ampliado para el examen B1 de la EOI.
+// Vocabulario temático para francés A2–B1.
 // Cada categoría tiene una lista de palabras (para flashcards) y un banco
 // de preguntas de opción múltiple (para el modo Quiz, generado más abajo).
 //

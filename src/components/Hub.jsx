@@ -19,7 +19,7 @@ export default function Hub({ onSelect }) {
     <div className="hub">
       <div className="hub-header">
         <h1>Carnet de Route</h1>
-        <p>Elige una sección para empezar tu repaso de francés B1</p>
+        <p>Elige una sección para empezar tu repaso de francés A2–B1</p>
       </div>
 
       <div className="bubble-container">

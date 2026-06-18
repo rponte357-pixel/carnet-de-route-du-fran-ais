@@ -1,6 +1,6 @@
 // "La Machine à Phrases" — datos del juego de conectores.
 //
-// Cada nivel es un párrafo coherente (tema B1) partido en segmentos de
+// Cada nivel es un párrafo coherente (tema A2–B1) partido en segmentos de
 // texto con huecos. En cada hueco hay que colocar el conector correcto
 // según su función. Las opciones mezclan el correcto con distractores.
 //
@@ -18,8 +18,41 @@
 
 export const connectorLevels = [
   {
+    id: 'a2-1',
+    title: 'Ma journée',
+    level: 'A2',
+    theme: '☀️ La rutina diaria',
+    segments: [
+      'Le matin, je prends un café ',
+      ' je mange une tartine. ',
+      ', je vais au travail.',
+    ],
+    blanks: [
+      { answer: 'et', role: 'añadir (y)', options: ['et', 'mais', 'donc'] },
+      { answer: 'Puis', role: 'ordenar (luego)', options: ['Puis', 'Car', 'Pourtant'] },
+    ],
+    full: 'Le matin, je prends un café et je mange une tartine. Puis, je vais au travail.',
+  },
+  {
+    id: 'a2-2',
+    title: 'Le week-end',
+    level: 'A2',
+    theme: '🎉 El fin de semana',
+    segments: [
+      "J'aime le week-end ",
+      ' je peux me reposer. ',
+      ' je dois ranger la maison.',
+    ],
+    blanks: [
+      { answer: 'parce que', role: 'causa (porque)', options: ['parce que', 'puis', 'pourtant'] },
+      { answer: 'Mais', role: 'contrastar (pero)', options: ['Mais', 'Et', 'Donc'] },
+    ],
+    full: "J'aime le week-end parce que je peux me reposer. Mais je dois ranger la maison.",
+  },
+  {
     id: 'lvl-1',
     title: 'Mi rutina',
+    level: 'A2',
     theme: '☀️ La rutina diaria',
     segments: [
       '',
@@ -37,6 +70,7 @@ export const connectorLevels = [
   {
     id: 'lvl-2',
     title: 'Mi opinión sobre los viajes',
+    level: 'B1',
     theme: '✈️ Viajar',
     segments: [
       '',
@@ -54,6 +88,7 @@ export const connectorLevels = [
   {
     id: 'lvl-3',
     title: 'La comida sana',
+    level: 'B1',
     theme: '🥗 La alimentación',
     segments: [
       'Je mange beaucoup de légumes, ',
@@ -71,6 +106,7 @@ export const connectorLevels = [
   {
     id: 'lvl-4',
     title: 'El trabajo ideal',
+    level: 'B1',
     theme: '💼 El trabajo',
     segments: [
       '',
@@ -90,6 +126,7 @@ export const connectorLevels = [
   {
     id: 'lvl-5',
     title: 'Por qué estudio francés',
+    level: 'B1',
     theme: '🇫🇷 Aprender idiomas',
     segments: [
       "J'étudie le français ",

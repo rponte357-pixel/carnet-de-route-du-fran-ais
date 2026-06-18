@@ -22,7 +22,7 @@ export default function VerbsExplorer() {
       <p className="page-eyebrow">Verbos y conjugación</p>
       <h2 className="page-title">Passé composé: conjugación completa</h2>
       <p className="page-intro">
-        Los verbos más comunes para la EOI, conjugados en passé composé con las
+        Los verbos más comunes en francés, conjugados en passé composé con las
         seis personas. Toca un verbo para desplegar su conjugación y usa el
         altavoz 🔊 para escuchar cómo se pronuncia cada forma.
       </p>

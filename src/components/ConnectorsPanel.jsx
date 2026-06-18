@@ -9,10 +9,10 @@ export default function ConnectorsPanel({ stats, onResult }) {
   return (
     <div>
       <p className="page-eyebrow">Conectores para brillar</p>
-      <h2 className="page-title">Suena a nivel B1</h2>
+      <h2 className="page-title">Suena a nivel A2–B1</h2>
       <p className="page-intro">
-        Usa estas fórmulas y el examinador sabrá que estás listo para B1, tanto en
-        la prueba escrita como en la oral.
+        Usa estas fórmulas para expresarte con más soltura en los niveles A2 y B1,
+        tanto en la prueba escrita como en la oral.
       </p>
 
       <div className="card">

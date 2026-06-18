@@ -85,6 +85,7 @@ function LevelSelect({ unlocked, totalScore, onPick }) {
                 <span className="cg__level-title">{lvl.title}</span>
                 <span className="cg__level-theme">{lvl.theme}</span>
               </span>
+              {!locked && lvl.level && <span className={'cg__level-badge cg__level-badge--' + lvl.level.toLowerCase()}>{lvl.level}</span>}
             </button>
           )
         })}
@@ -203,7 +204,7 @@ function LevelPlay({ level, levelNumber, totalLevels, onExit, onComplete, onNext
       <button type="button" className="back-link" onClick={onExit}>← Niveles</button>
 
       <div className="cg__hud">
-        <span className="cg__hud-level">Nivel {levelNumber}/{totalLevels}</span>
+        <span className="cg__hud-level">Nivel {levelNumber}/{totalLevels}{level.level ? ` · ${level.level}` : ''}</span>
         <span className="cg__hud-points">⭐ {points}</span>
         <span className={'cg__hud-combo' + (combo >= 2 ? ' cg__hud-combo--hot' : '')}>
           {combo >= 2 ? `🔥 Combo x${combo}` : `Combo x${combo}`}
