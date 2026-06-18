@@ -10,6 +10,7 @@ const BUBBLES = [
   { id: 'conectores', eyebrow: 'Expresión', title: 'Conectores', variant: 'connectors' },
   { id: 'redaccion', eyebrow: 'Escritura', title: 'Redacción', variant: 'editorial' },
   { id: 'vocabulario', eyebrow: 'Léxico', title: 'Vocabulario', variant: 'flags' },
+  { id: 'juegos', eyebrow: 'Jugar', title: 'Juegos', variant: 'playful' },
   { id: 'progreso', eyebrow: 'Seguimiento', title: 'Progreso', variant: 'progress' },
 ]
 

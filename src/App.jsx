@@ -8,6 +8,7 @@ import ConnectorsPanel from './components/ConnectorsPanel.jsx'
 import WritingLab from './components/WritingLab.jsx'
 import VocabExplorer from './components/VocabExplorer.jsx'
 import ProgressDashboard from './components/ProgressDashboard.jsx'
+import GamesHub from './components/GamesHub.jsx'
 import { useProgress } from './hooks/useProgress.js'
 
 export default function App() {
@@ -88,6 +89,8 @@ export default function App() {
         {activeTab === 'progreso' && (
           <ProgressDashboard progress={progress} onReset={resetProgress} />
         )}
+
+        {activeTab === 'juegos' && <GamesHub />}
       </main>
 
       <footer className="app-footer">
