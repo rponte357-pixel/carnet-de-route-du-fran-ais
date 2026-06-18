@@ -6,6 +6,8 @@ El progreso de cada entrenamiento se guarda automáticamente en el navegador (`l
 
 ## Secciones incluidas
 
+La app abre en una **pantalla de inicio con burbujas**: cada burbuja lleva a una sección. Dentro de cada sección hay un enlace «← Inicio» para volver, además de la barra de pestañas para saltar entre secciones.
+
 - **Gramática** — resumen de Passé Composé, Imparfait y Futur Proche, con la lista de los 14 verbos de être y la regla de los verbos pronominales.
 - **Auxiliares** — juego de "¿être o avoir?" con más de 40 verbos.
 - **Verbos** — conjugación completa en passé composé de los verbos más comunes, en tres grupos (auxiliar avoir, reflexivos y la casa de être), con audio en cada forma.

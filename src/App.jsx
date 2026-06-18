@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Hub from './components/Hub.jsx'
 import Navigation from './components/Navigation.jsx'
 import GrammarSummary from './components/GrammarSummary.jsx'
 import AuxiliaryTrainer from './components/AuxiliaryTrainer.jsx'
@@ -22,12 +23,33 @@ const SECTIONS = [
 ]
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('gramatica')
+  // activeTab = null  ->  estamos en la pantalla de inicio (hub)
+  const [activeTab, setActiveTab] = useState(null)
   const { progress, registerResult, resetProgress } = useProgress()
 
+  // --- Pantalla de inicio con burbujas ---
+  if (activeTab === null) {
+    return (
+      <div className="app-shell app-shell--hub">
+        <Hub onSelect={setActiveTab} />
+        <footer className="app-footer">
+          Bon courage pour l'examen — Carnet de Route · proyecto personal de estudio
+        </footer>
+      </div>
+    )
+  }
+
+  // --- Vista de una sección ---
   return (
     <div className="app-shell">
       <header className="app-header">
+        <button
+          type="button"
+          className="back-link"
+          onClick={() => setActiveTab(null)}
+        >
+          ← Inicio
+        </button>
         <div className="app-header__mark">
           <div className="app-header__stamp" aria-hidden="true">
             <span>EOI</span>
