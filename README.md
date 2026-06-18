@@ -16,7 +16,7 @@ La app abre en una **pantalla de inicio con burbujas**: cada burbuja lleva a una
 - **Redacción** — plantillas tipo "rellena el hueco" para Mi Familia, Mis Vacaciones, Mi Trabajo y Mi Próximo Viaje.
 - **Vocabulario** — tarjetas (flashcards) y quiz de opción múltiple para 13 categorías temáticas: familia, trabajo y profesiones, nacionalidad, comida, viajes, casa y vida diaria, salud y cuerpo, tiempo libre y aficiones, ciudad y transporte, ropa y compras, naturaleza y medio ambiente, estudios y educación, y tecnología e internet (más de 450 palabras en total).
 - **Progreso** — panel resumen con tu porcentaje de aciertos por categoría.
-- **Juegos** — una zona de juegos con su propio menú de burbujas: crucigramas (rellenas palabras francesas a partir de pistas en español), rueda de letras (formas palabras francesas con las letras dadas) y ahorcado (adivinas una palabra francesa letra a letra). Las palabras tienen audio al resolverlas.
+- **Juegos** — una zona de juegos con su propio menú de burbujas: crucigramas (rellenas palabras francesas a partir de pistas en español), rueda de letras (deslizas el dedo uniendo letras para formar la palabra, de una en una), ahorcado (adivinas una palabra francesa letra a letra) y «La Machine à Phrases» (colocas los conectores correctos para construir párrafos con sentido, con puntos, combos, contrarreloj y niveles que se desbloquean). Las palabras y los párrafos tienen audio.
 - **Audio en francés** — botón de altavoz 🔊 en las tarjetas, el entrenador de auxiliares, el quiz y los ejercicios de tiempos. Usa la voz del propio navegador (no necesita conexión ni instalar nada). El sonido se activa tras el primer clic en la página, como exigen los navegadores.
 
 ## Requisitos

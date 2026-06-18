@@ -3,11 +3,13 @@ import { crosswordPuzzles, wordWheels } from '../data/games.js'
 import CrosswordGame from './games/CrosswordGame.jsx'
 import WordWheel from './games/WordWheel.jsx'
 import Hangman from './games/Hangman.jsx'
+import ConnectorGame from './games/ConnectorGame.jsx'
 
 const GAMES = [
   { id: 'crossword', title: 'Crucigramas', eyebrow: 'Ortografía', variant: 'connectors', desc: 'Rellena la cuadrícula con palabras francesas a partir de las pistas.' },
   { id: 'wordwheel', title: 'Rueda de letras', eyebrow: 'Vocabulario', variant: 'tenses', desc: 'Forma palabras francesas con las letras de la rueda.' },
   { id: 'hangman', title: 'Ahorcado', eyebrow: 'Adivina', variant: 'house', desc: 'Adivina la palabra francesa letra a letra antes de quedarte sin intentos.' },
+  { id: 'connectors', title: 'Machine à Phrases', eyebrow: 'Conectores', variant: 'editorial', desc: 'Coloca los conectores correctos para construir párrafos con sentido.' },
 ]
 
 export default function GamesHub() {
@@ -95,6 +97,8 @@ export default function GamesHub() {
       )}
 
       {game === 'hangman' && <Hangman />}
+
+      {game === 'connectors' && <ConnectorGame />}
     </div>
   )
 }
