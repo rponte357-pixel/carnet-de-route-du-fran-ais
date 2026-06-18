@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { buildQuizBank } from '../data/vocabulary.js'
+import SpeakButton from './SpeakButton.jsx'
 
 export default function VocabQuiz({ categoryId, stats, onResult }) {
   const [seed, setSeed] = useState(0)
@@ -31,7 +32,7 @@ export default function VocabQuiz({ categoryId, stats, onResult }) {
       <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--ink-soft)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
         ¿Cómo se dice en español?
       </p>
-      <p className="quiz-question">{question.question}</p>
+      <p className="quiz-question">{question.question} <SpeakButton text={question.question} /></p>
       <div className="quiz-options">
         {question.options.map((opt) => {
           let cls = 'quiz-option'

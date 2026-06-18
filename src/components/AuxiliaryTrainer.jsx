@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { auxiliaryTrainerVerbs } from '../data/grammar.js'
+import SpeakButton from './SpeakButton.jsx'
 
 function pickRandomVerb(excludeFr) {
   const pool = auxiliaryTrainerVerbs.filter((v) => v.fr !== excludeFr)
@@ -36,7 +37,7 @@ export default function AuxiliaryTrainer({ stats, onResult }) {
 
       <div className="card prompt-card">
         <span className="tag tag--etre" style={{ opacity: 0.7 }}>Verbo</span>
-        <div className="prompt-card__word">{current.fr}</div>
+        <div className="prompt-card__word">{current.fr} <SpeakButton text={current.fr} /></div>
         <div className="prompt-card__translation">({current.es})</div>
 
         <div className="btn-row" style={{ marginTop: 26 }}>

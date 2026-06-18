@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import SpeakButton from './SpeakButton.jsx'
 
 export default function FlashcardDeck({ words }) {
   const [index, setIndex] = useState(0)
@@ -26,6 +27,7 @@ export default function FlashcardDeck({ words }) {
           <div className="flashcard__face">
             <span className="flashcard__lang">Français</span>
             <span className="flashcard__word">{word.fr}</span>
+            <SpeakButton text={word.fr} />
             <span className="flashcard__hint">Toca para ver la traducción</span>
           </div>
           <div className="flashcard__face flashcard__face--back">

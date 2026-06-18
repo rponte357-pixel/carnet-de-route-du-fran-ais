@@ -13,6 +13,7 @@ El progreso de cada entrenamiento se guarda automáticamente en el navegador (`l
 - **Redacción** — plantillas tipo "rellena el hueco" para Mi Familia, Mis Vacaciones, Mi Trabajo y Mi Próximo Viaje.
 - **Vocabulario** — tarjetas (flashcards) y quiz de opción múltiple para 5 categorías: familia, trabajo/profesiones, nacionalidad, comida y viajes (más de 120 palabras en total).
 - **Progreso** — panel resumen con tu porcentaje de aciertos por categoría.
+- **Audio en francés** — botón de altavoz 🔊 en las tarjetas, el entrenador de auxiliares, el quiz y los ejercicios de tiempos. Usa la voz del propio navegador (no necesita conexión ni instalar nada). El sonido se activa tras el primer clic en la página, como exigen los navegadores.
 
 ## Requisitos
 
@@ -59,6 +60,54 @@ git push -u origin main
 4. Tu app quedará publicada en `https://TU-USUARIO.github.io/TU-REPOSITORIO/`.
 
 > Alternativa sin configuración: importa el repositorio en [Vercel](https://vercel.com) o [Netlify](https://netlify.com) — detectan Vite automáticamente y no necesitas tocar `base`.
+
+## Actualizar el proyecto después de hacer cambios
+
+Una vez que el proyecto ya está en GitHub, cada vez que modifiques algo (añadir vocabulario, cambiar un componente, etc.) sigue este ciclo.
+
+### 1. Prueba el cambio en local
+
+Mientras editas, deja `npm run dev` corriendo: se recarga solo al guardar. Cuando termines, párralo con `Ctrl + C` y comprueba que la versión final compila bien:
+
+```bash
+npm run build
+npm run preview
+```
+
+Abre la URL exacta que imprima la terminal. Si usas `base: '/TU-REPOSITORIO/'`, la app vive en esa subruta (no en la raíz).
+
+### 2. Sube los cambios a GitHub (rama main)
+
+```bash
+git add .
+git commit -m "Describe aquí qué cambiaste"
+git push
+```
+
+- `git add .` prepara todos los archivos modificados.
+- `git commit -m "..."` guarda el cambio con un mensaje que lo describa.
+- `git push` lo envía a GitHub. (Solo la primera vez se usa `git push -u origin main`; después basta con `git push`.)
+
+### 3. Vuelve a publicar la versión online
+
+Subir a `main` actualiza el **código fuente**, pero la web publicada en GitHub Pages no cambia hasta que vuelves a desplegar:
+
+```bash
+npm run deploy
+```
+
+Este comando recompila la app y actualiza la rama `gh-pages`. En uno o dos minutos verás los cambios en `https://TU-USUARIO.github.io/TU-REPOSITORIO/` (refresca con `Cmd + Shift + R` si tu navegador muestra la versión antigua en caché).
+
+> En Vercel o Netlify no hace falta el paso 3: cada `git push` redespliega la web automáticamente.
+
+### Resumen rápido
+
+| Quiero... | Comando |
+|---|---|
+| Ver el cambio mientras trabajo | `npm run dev` |
+| Probar la versión final en local | `npm run build` y luego `npm run preview` |
+| Guardar y subir el código a GitHub | `git add .` → `git commit -m "..."` → `git push` |
+| Actualizar la web publicada (GitHub Pages) | `npm run deploy` |
 
 ## Ampliar el contenido
 

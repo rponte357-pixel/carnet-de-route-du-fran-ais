@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { tenseChoiceExercises, futurProcheExercises } from '../data/grammar.js'
+import SpeakButton from './SpeakButton.jsx'
 
 function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5)
@@ -44,7 +45,7 @@ export default function TenseTrainer({ stats, onResult }) {
       </p>
 
       <div className="card quiz-card">
-        <p className="quiz-question">{exercise.sentence}</p>
+        <p className="quiz-question">{exercise.sentence} <SpeakButton text={exercise.sentence} /></p>
         <div className="quiz-options">
           {exercise.options.map((opt, i) => {
             let cls = 'quiz-option'
