@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Hub from './components/Hub.jsx'
-import Navigation from './components/Navigation.jsx'
 import GrammarSummary from './components/GrammarSummary.jsx'
 import AuxiliaryTrainer from './components/AuxiliaryTrainer.jsx'
 import TenseTrainer from './components/TenseTrainer.jsx'
@@ -10,17 +9,6 @@ import WritingLab from './components/WritingLab.jsx'
 import VocabExplorer from './components/VocabExplorer.jsx'
 import ProgressDashboard from './components/ProgressDashboard.jsx'
 import { useProgress } from './hooks/useProgress.js'
-
-const SECTIONS = [
-  { id: 'gramatica', label: 'Gramática', icon: '📖' },
-  { id: 'auxiliares', label: 'Auxiliares', icon: '🏠' },
-  { id: 'verbos', label: 'Verbos', icon: '🔤' },
-  { id: 'tiempos', label: 'Tiempos', icon: '⏳' },
-  { id: 'conectores', label: 'Conectores', icon: '🔗' },
-  { id: 'redaccion', label: 'Redacción', icon: '✍️' },
-  { id: 'vocabulario', label: 'Vocabulario', icon: '🗂️' },
-  { id: 'progreso', label: 'Progreso', icon: '🛂' },
-]
 
 export default function App() {
   // activeTab = null  ->  estamos en la pantalla de inicio (hub)
@@ -61,8 +49,6 @@ export default function App() {
           </div>
         </div>
       </header>
-
-      <Navigation sections={SECTIONS} activeId={activeTab} onChange={setActiveTab} />
 
       <main>
         {activeTab === 'gramatica' && <GrammarSummary />}
